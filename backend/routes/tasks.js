@@ -15,7 +15,20 @@ router.get("/", async (req, res, next) => {
 // erstellen
 router.post("/", async (req, res, next) => {
     try {
-        await Task.create()
+        const { title, description, priority, status } = req.body;
+
+        if(!title ) {
+            return.res.status(400).json({message: "invalid task"});
+        }
+
+        const task = await Task.create({
+            title: title,
+            description: description ? description : "";
+            priority: priority,
+            status: status
+        })
+
+        res.status(201).json(task)
     } catch(error) {
         next(error)
     }
@@ -24,6 +37,15 @@ router.post("/", async (req, res, next) => {
 
 // löschen 
 router.delete("/", async (req, res, next) => {
+    try {
+
+    } catch(error) {
+        next(error)
+    }
+})
+
+// bearbeiten 
+router.put("/", async (req, res, next) => {
     try {
 
     } catch(error) {
