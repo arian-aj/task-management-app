@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
 export default async function connect() {
-    mongoose.connection("connected", () => console.log("DB connected"));
-    mongoose.connection("error", (error) => console.error("DB ERROR", error))
+    mongoose.connection.on("connected", () => console.log("DB connected"));
+    mongoose.connection.on("error", (error) => console.error("DB ERROR", error))
 
     try {
         // Verbinden
